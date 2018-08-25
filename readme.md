@@ -110,7 +110,7 @@ mysql> show create view view1;
 
 
 测试用例:
-```````
+````
 	terminal1:
 		`mysql -u root -p`
 	password:
@@ -178,4 +178,5 @@ mysql> show create view view1;
 		4
 	30. input sid
 		15					通过验证最高成绩验证成绩已经插入
+		
 ````

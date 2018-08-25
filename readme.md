@@ -1,13 +1,12 @@
 Ubuntu 16.04.4 LTS.
 mysql  Ver 14.14 Distrib 5.7.22, for Linux (x86_64) using  EditLine wrapper
 
+````bash
 g++ -I/usr/include/mysql -I./include ./src/main.cpp -L/usr/lib/mysql -lmysqlclient -std=c++11 -o ./grade
+````
 
-5 tables;
-1 view;
-
+````mysql
 mysql> show tables;
-
 | Tables_in_grade  |
 |------------------|
 | scores           |
@@ -16,12 +15,9 @@ mysql> show tables;
 | teaching_classes |
 | time             |
 | view1            |
-
 6 rows in set (0.00 sec)
 
-
 mysql> show columns from scores;
-
 | Field        | Type        | Null | Key | Default | Extra |
 |--------------|-------------|------|-----|---------|-------|
 | course_id    | int(11)     | NO   | PRI | NULL    |       |
@@ -30,11 +26,9 @@ mysql> show columns from scores;
 | name         | varchar(25) | YES  |     | NULL    |       |
 | score        | int(11)     | NO   |     | NULL    |       |
 | full_score   | int(11)     | YES  |     | NULL    |       |
-
 6 rows in set (0.00 sec)
 
 mysql> show columns from students;
-
 | Field      | Type        | Null | Key | Default | Extra |
 |------------|-------------|------|-----|---------|-------|
 | name       | varchar(25) | YES  |     | NULL    |       |
@@ -42,55 +36,44 @@ mysql> show columns from students;
 | sex        | int(11)     | YES  |     | NULL    |       |
 | admission  | int(11)     | YES  |     | NULL    |       |
 | graduation | int(11)     | YES  |     | NULL    |       |
-
 5 rows in set (0.00 sec)
 
 mysql> show columns from teachers;
-
 | Field | Type        | Null | Key | Default | Extra |
 |-------|-------------|------|-----|---------|-------|
 | name  | varchar(25) | YES  |     | NULL    |       |
 | id    | int(11)     | NO   | PRI | NULL    |       |
 | sex   | int(11)     | YES  |     | NULL    |       |
-
 3 rows in set (0.00 sec)
 
 mysql> show columns from teaching_classes;
-
 | Field      | Type    | Null | Key | Default | Extra |
 |------------|---------|------|-----|---------|-------|
 | id         | int(11) | NO   | PRI | NULL    |       |
 | teacher_id | int(11) | YES  | MUL | NULL    |       |
 | student_id | int(11) | NO   | PRI | NULL    |       |
 | course_id  | int(11) | NO   | PRI | NULL    |       |
-
 4 rows in set (0.00 sec)
 
 mysql> show columns from time;
-
 | Field | Type     | Null | Key | Default | Extra |
 |-------|----------|------|-----|---------|-------|
 | time  | datetime | YES  |     | NULL    |       |
-
 1 row in set (0.00 sec)
 
 mysql> desc view1;
-
 | Field        | Type    | Null | Key | Default | Extra |
 |--------------|---------|------|-----|---------|-------|
 | MAX(`score`) | int(11) | YES  |     | NULL    |       |
 | student_id   | int(11) | NO   |     | NULL    |       |
-
 2 rows in set (0.01 sec)
 
 mysql> show create view view1;
-
 | View  | Create View                                                                                                                                                                                                                    | character_set_client | collation_connection |
 |-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|----------------------|
 | view1 | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view1` AS select max(`scores`.`score`) AS `MAX(``score``)`,`scores`.`student_id` AS `student_id` from `scores` group by `scores`.`student_id` | latin1               | latin1_swedish_ci    |
-
 1 row in set (0.00 sec)
-
+````
 
 #### 1. 初始化模块
 (不进行登录验证, 程序中包含数据库登录密码)
@@ -127,7 +110,7 @@ mysql> show create view view1;
 
 
 测试用例:
-```````bash
+```````
 	terminal1:
 		`mysql -u root -p`
 	password:
